@@ -3,7 +3,7 @@ import NavBarItem from './NavbarItem';
 
 const NavBar = () => {
   return (
-    <nav id="header" className="fixed w-full z10 top-0">
+    <nav id="header" className="fixed w-full z10 top-0 h-14">
       <div className="w-full md:max-w-4xl mx-auto flex flex-wrap items-center justify-between mt-0 py-3">
         <div className="pl-4">
           <span className="text-gray-900 text-xl no-underline hover:no-underline font-extrabold">
