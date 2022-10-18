@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import profilePic from '../public/profile.jpg';
-import NavBar from '../src/components/navbar';
-import GithubIcon from '../src/components/navbar/common/GithubIcon';
+import NavBar from '../src/components/Navbar';
+import GithubIcon from '../src/components/common/GithubIcon';
 
 const Home: NextPage = () => {
   return (

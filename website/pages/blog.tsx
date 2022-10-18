@@ -1,7 +1,8 @@
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { BlogPost } from '../@types/schema';
 import NotionApi from '../src/api/NotionApi';
-import NavBar from '../src/components/navbar';
+import NavBar from '../src/components/Navbar';
+import PostItem from '../src/components/PostItem';
 
 type Props = {
   posts: BlogPost[];
@@ -19,11 +20,14 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 };
 
 const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log(posts);
-
   return (
-    <div className="flex h-screen w-screen bg-slate-400">
+    <div className="flex justify-center h-screen w-screen bg-slate-400">
       <NavBar />
+      <main className="flex flex-col flex-grow max-w-4xl mt-14 px-8">
+        {posts.map((post) => {
+          return <PostItem key={post.id} post={post} />;
+        })}
+      </main>
     </div>
   );
 };
