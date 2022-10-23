@@ -10,4 +10,10 @@ export type BlogPost = {
   title: string;
   tags: Tag[];
   date: string;
+  description: string;
+};
+
+export type PostPage = {
+  post: BlogPost;
+  postElements: Record<string, string>[];
 };
