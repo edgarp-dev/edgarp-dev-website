@@ -18,11 +18,11 @@ const Home: NextPage = () => {
       </div>
       <div className="flex flex-col flex-grow items-center w-full">
         <p className="font-sans leading-loose mb-8">
-          <span className={`font-semibold text-4xl ${colors.textColor}`}>
+          <span className={`font-semibold text-4xl ${colors.textColor} antialiased`}>
             Edgar Perez
           </span>{' '}
           <br />
-          <span className={`font-normal text-2xl ${colors.textColor}`}>
+          <span className={`font-normal text-2xl ${colors.textColor} antialiased`}>
             Sofware Developer
           </span>
         </p>
