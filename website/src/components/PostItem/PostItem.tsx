@@ -9,7 +9,7 @@ const PostItem = ({ post }: Props) => {
   const { slug, title, date, tags } = post;
 
   return (
-    <Link href={`/post/${slug}`}>
+    <Link href={`/blog/post/${slug}`}>
       <div className="flex flex-col mb-8 cursor-pointer border-b border-indigo-400">
         <p className="text-2xl font-bold antialiased">{title}</p>
         <p className="text-lg font-normal antialiased">{date}</p>

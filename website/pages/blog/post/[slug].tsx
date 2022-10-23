@@ -1,10 +1,11 @@
 /* eslint-disable react/no-children-prop */
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import Head from 'next/head';
 import { ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { PostPage } from '../../@types/schema';
-import NotionApi from '../../src/api/NotionApi';
+import { PostPage } from '../../../@types/schema';
+import NotionApi from '../../../src/api/NotionApi';
 
 type StaticProps = {
   postPage: PostPage;
@@ -99,6 +100,21 @@ const Post = ({ postPage }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   return (
     <>
+      <Head>
+        <title>{post.title}</title>
+        <meta name={'og:title'} title={'og:title'} content={post.title} />
+        <meta name={'og:type'} title={'og:type'} content={'website'} />
+        <meta
+          name={'description'}
+          title={'description'}
+          content={post.description}
+        />
+        <meta
+          name={'og:description'}
+          title={'og:description'}
+          content={post.description}
+        />
+      </Head>
       <div className="min-h-screen">
         <main className="max-w-5xl mx-auto relative">
           <div className="flex items-center justify-center">

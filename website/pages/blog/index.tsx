@@ -1,8 +1,7 @@
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { BlogPost } from '../@types/schema';
-import NotionApi from '../src/api/NotionApi';
-import NavBar from '../src/components/Navbar';
-import PostItem from '../src/components/PostItem';
+import { BlogPost } from '../../@types/schema';
+import NotionApi from '../../src/api/NotionApi';
+import PostItem from '../../src/components/PostItem';
 
 type Props = {
   posts: BlogPost[];

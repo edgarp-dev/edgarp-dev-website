@@ -34,34 +34,9 @@ export default class NotionApi {
 
     const listOfPosts: BlogPost[] = [];
 
-    response.results.forEach((result) => {
-      const id = result.id;
-      let slug = '';
-      let title = '';
-      let tags: Tag[] = [];
-      let date = '';
-
-      if ('properties' in result) {
-        if ('title' in result.properties.Name) {
-          title = result.properties.Name.title[0].plain_text;
-        }
-
-        if ('date' in result.properties.Date) {
-          date = result.properties.Date.date?.start as string;
-        }
-
-        if ('rich_text' in result.properties.Slug) {
-          slug = result.properties.Slug.rich_text[0].plain_text;
-        }
-
-        if ('multi_select' in result.properties.Tags) {
-          tags = tags.concat(
-            result.properties.Tags.multi_select as unknown as Tag,
-          );
-        }
-      }
-
-      listOfPosts.push({ id, slug, title, tags, date });
+    response.results.forEach((page) => {
+      const blogPost = this.pageToPostTransformer(page);
+      listOfPosts.push(blogPost);
     });
 
     return listOfPosts;
@@ -152,6 +127,7 @@ export default class NotionApi {
     let title = '';
     let tags: Tag[] = [];
     let date = '';
+    let description = '';
 
     if ('properties' in page) {
       if ('title' in page.properties.Name) {
@@ -169,8 +145,12 @@ export default class NotionApi {
       if ('multi_select' in page.properties.Tags) {
         tags = tags.concat(page.properties.Tags.multi_select as unknown as Tag);
       }
+
+      if ('rich_text' in page.properties.Description) {
+        description = page.properties.Description.rich_text[0].plain_text;
+      }
     }
 
-    return { id, slug, title, tags, date };
+    return { id, slug, title, tags, date, description };
   }
 }
