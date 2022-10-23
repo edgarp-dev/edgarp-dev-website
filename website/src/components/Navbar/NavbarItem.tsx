@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import colors from '../../utils/colors';
 
 type Props = {
   href: string;
@@ -8,10 +9,10 @@ type Props = {
 
 const NavBarItem = ({ href, text }: Props) => {
   return (
-    <li className="mr-3">
+    <li className="mr-5 last:mr-0">
       <Link
         href={href}
-        className="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-2 px-4">
+        className={`${colors.textColor} inline-bloc no-underline hover:text-gray-900 hover:text-underline`}>
         {text}
       </Link>
     </li>
