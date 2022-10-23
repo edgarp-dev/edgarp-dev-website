@@ -15,15 +15,15 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   return {
     props: {
       posts: listOfPosts,
+      isLoading: false,
     },
   };
 };
 
 const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <div className="flex justify-center h-screen w-screen bg-slate-400">
-      <NavBar />
-      <main className="flex flex-col flex-grow max-w-4xl mt-14 px-8">
+    <div className="flex justify-center">
+      <main className="flex flex-col flex-grow max-w-4xl px-8">
         {posts.map((post) => {
           return <PostItem key={post.id} post={post} />;
         })}

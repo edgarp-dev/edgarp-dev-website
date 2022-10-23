@@ -11,3 +11,8 @@ export type BlogPost = {
   tags: Tag[];
   date: string;
 };
+
+export type PostPage = {
+  post: BlogPost;
+  postElements: Record<string, string>[];
+};
