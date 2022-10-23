@@ -24,6 +24,12 @@ export default class NotionApi {
   public async getListOfPosts(): Promise<BlogPost[]> {
     const response = await this.notionClient.databases.query({
       database_id: this.notionDatabaseId,
+      filter: {
+        property: 'Published',
+        checkbox: {
+          equals: true,
+        },
+      },
       sorts: [
         {
           property: 'Date',
