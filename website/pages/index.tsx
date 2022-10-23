@@ -21,7 +21,7 @@ const Home: NextPage = () => {
           <span
             className={`font-semibold text-4xl ${colors.textColor} antialiased`}>
             Edgar Perez
-          </span>{' '}
+          </span>
           <br />
           <span
             className={`font-normal text-2xl ${colors.textColor} antialiased`}>
