@@ -7,7 +7,7 @@ type Props = {
   posts: BlogPost[];
 };
 
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const notionApi = new NotionApi();
   const listOfPosts = await notionApi.getListOfPosts();
 

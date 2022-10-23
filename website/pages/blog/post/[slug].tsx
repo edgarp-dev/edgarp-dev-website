@@ -98,6 +98,12 @@ const Post = ({ postPage }: InferGetStaticPropsType<typeof getStaticProps>) => {
     }
   }
 
+  function renderPost(): ReactNode {
+    return postElements.map((postElement: Record<string, string>) =>
+      renderPostElement(postElement),
+    );
+  }
+
   return (
     <>
       <Head>
@@ -118,11 +124,7 @@ const Post = ({ postPage }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <div className="min-h-screen">
         <main className="max-w-5xl mx-auto relative">
           <div className="flex items-center justify-center">
-            <article>
-              {postElements.map((postElement: Record<string, string>) =>
-                renderPostElement(postElement),
-              )}
-            </article>
+            <article>{renderPost()}</article>
           </div>
         </main>
       </div>
