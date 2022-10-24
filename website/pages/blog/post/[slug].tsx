@@ -67,30 +67,30 @@ const Post = ({ postPage }: InferGetStaticPropsType<typeof getStaticProps>) => {
         );
       case 'li':
         return <p>-{postElement.content}</p>;
-      case 'code':
-        return (
-          <ReactMarkdown
-            children={postElement.content}
-            components={{
-              code({ className, children, ...props }) {
-                const match =
-                  /language-(\w+)/.exec(className || '') || 'javascript';
-                return (
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-ignore
-                  <SyntaxHighlighter
-                    customStyle={{ borderRadius: '5px' }}
-                    wrapLines
-                    children={String(children).replace(/\n$/, '')}
-                    language={match[1]}
-                    PreTag="div"
-                    {...props}
-                  />
-                );
-              },
-            }}
-          />
-        );
+      // case 'code':
+      //   return (
+      //     <ReactMarkdown
+      //       children={postElement.content}
+      //       components={{
+      //         code({ className, children, ...props }) {
+      //           const match =
+      //             /language-(\w+)/.exec(className || '') || 'javascript';
+      //           return (
+      //             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //             // @ts-ignore
+      //             <SyntaxHighlighter
+      //               customStyle={{ borderRadius: '5px' }}
+      //               wrapLines
+      //               children={String(children).replace(/\n$/, '')}
+      //               language={match[1]}
+      //               PreTag="div"
+      //               {...props}
+      //             />
+      //           );
+      //         },
+      //       }}
+      //     />
+      //   );
       case 'image':
         return <ReactMarkdown>{postElement.content}</ReactMarkdown>;
       default:
@@ -121,13 +121,11 @@ const Post = ({ postPage }: InferGetStaticPropsType<typeof getStaticProps>) => {
           content={post.description}
         />
       </Head>
-      <div className="min-h-screen">
-        <main className="max-w-5xl mx-auto relative">
-          <div className="flex items-center justify-center">
-            <article>{renderPost()}</article>
-          </div>
-        </main>
-      </div>
+      <main>
+        <div className="px-3 md:px-0 flex items-center justify-center">
+          <article>{renderPost()}</article>
+        </div>
+      </main>
     </>
   );
 };

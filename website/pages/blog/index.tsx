@@ -21,13 +21,11 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
 const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <div className="flex justify-center">
-      <main className="flex flex-col flex-grow max-w-4xl px-8">
-        {posts.map((post) => {
-          return <PostItem key={post.id} post={post} />;
-        })}
-      </main>
-    </div>
+    <main className="flex flex-col flex-grow px-3 md:px-0">
+      {posts.map((post) => {
+        return <PostItem key={post.id} post={post} />;
+      })}
+    </main>
   );
 };
 
