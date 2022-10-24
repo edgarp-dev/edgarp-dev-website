@@ -4,9 +4,9 @@ import NavBar from '../src/components/Navbar';
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <div className="flex flex-col min-h-screen min-w-full bg-gray-900">
+    <div className="w-full overflow-auto min-h-screen bg-gray-900">
       <NavBar />
-      <div className="pt-20 min-w-full md:max-w-3xl mx-auto">
+      <div className="pt-20 md:max-w-3xl mx-auto">
         <Component {...pageProps} />
       </div>
     </div>

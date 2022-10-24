@@ -6,6 +6,8 @@ import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { PostPage } from '../../../@types/schema';
 import NotionApi from '../../../src/api/NotionApi';
+import colors from '../../../src/utils/colors';
+import padding from '../../../src/utils/padding';
 
 type StaticProps = {
   postPage: PostPage;
@@ -47,18 +49,35 @@ const Post = ({ postPage }: InferGetStaticPropsType<typeof getStaticProps>) => {
   function renderPostElement(postElement: Record<string, string>): ReactNode {
     switch (postElement.type) {
       case 'h1':
-        return <h1>{postElement.content}</h1>;
+        return (
+          <h1 className={`${colors.textColor} text-3xl font-bold`}>
+            {postElement.content}
+          </h1>
+        );
       case 'h2':
-        return <h2>{postElement.content}</h2>;
+        return (
+          <h2 className={`${colors.textColor} text-2xl font-semibold`}>
+            {postElement.content}
+          </h2>
+        );
       case 'h3':
-        return <h3>{postElement.content}</h3>;
+        return (
+          <h3 className={`${colors.textColor} text-xl font-semibold`}>
+            {postElement.content}
+          </h3>
+        );
       case 'p':
-        return <p>{postElement.content}</p>;
+        return (
+          <p className={`${colors.textColor} text-lg font-light`}>
+            {postElement.content}
+          </p>
+        );
       case 'br':
         return <br />;
       case 'a':
         return (
           <a
+            className={`${colors.textColor} text-base font-extralight`}
             href={postElement.content}
             target="_blank"
             rel="noopener noreferrer">
@@ -66,30 +85,36 @@ const Post = ({ postPage }: InferGetStaticPropsType<typeof getStaticProps>) => {
           </a>
         );
       case 'li':
-        return <p>-{postElement.content}</p>;
+        return (
+          <p className={`${colors.textColor} text-lg font-light`}>
+            &bull;{postElement.content}
+          </p>
+        );
       case 'code':
         return (
-          <ReactMarkdown
-            children={postElement.content}
-            components={{
-              code({ className, children, ...props }) {
-                const match =
-                  /language-(\w+)/.exec(className || '') || 'javascript';
-                return (
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-ignore
-                  <SyntaxHighlighter
-                    customStyle={{ borderRadius: '5px' }}
-                    wrapLines
-                    children={String(children).replace(/\n$/, '')}
-                    language={match[1]}
-                    PreTag="div"
-                    {...props}
-                  />
-                );
-              },
-            }}
-          />
+          <div className="w-[360px] md:w-[740px] lg:w-full">
+            <ReactMarkdown
+              children={postElement.content}
+              components={{
+                code({ className, children, ...props }) {
+                  const match =
+                    /language-(\w+)/.exec(className || '') || 'javascript';
+                  return (
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    <SyntaxHighlighter
+                      customStyle={{ borderRadius: '5px' }}
+                      wrapLines
+                      children={String(children).replace(/\n$/, '')}
+                      language={match[1]}
+                      PreTag="div"
+                      {...props}
+                    />
+                  );
+                },
+              }}
+            />
+          </div>
         );
       case 'image':
         return <ReactMarkdown>{postElement.content}</ReactMarkdown>;
@@ -121,13 +146,12 @@ const Post = ({ postPage }: InferGetStaticPropsType<typeof getStaticProps>) => {
           content={post.description}
         />
       </Head>
-      <div className="min-h-screen">
-        <main className="max-w-5xl mx-auto relative">
-          <div className="flex items-center justify-center">
-            <article>{renderPost()}</article>
-          </div>
-        </main>
-      </div>
+      <main>
+        <div
+          className={`${padding.generalPadding} flex items-center justify-center`}>
+          <article>{renderPost()}</article>
+        </div>
+      </main>
     </>
   );
 };
