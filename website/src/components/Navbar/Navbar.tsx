@@ -1,12 +1,13 @@
 import React from 'react';
 import colors from '../../utils/colors';
 import NavBarItem from './NavbarItem';
+import padding from '../../utils/padding';
 
 const NavBar = () => {
   return (
     <nav
       id="header"
-      className="fixed min-w-full px-3 md:px-0 z-10 top-0 h-14 decoration-solid bg-slate-900 shadow-lg">
+      className={`fixed min-w-full ${padding.generalPadding} z-10 top-0 h-14 decoration-solid bg-slate-900 shadow-lg`}>
       <div className="mx-auto md:max-w-3xl flex flex-wrap items-center justify-between mt-0 py-3">
         <span
           className={`${colors.textColor} text-xl no-underline hover:no-underline font-extrabold`}>

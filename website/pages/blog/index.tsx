@@ -2,6 +2,7 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { BlogPost } from '../../@types/schema';
 import NotionApi from '../../src/api/NotionApi';
 import PostItem from '../../src/components/PostItem';
+import padding from '../../src/utils/padding';
 
 type Props = {
   posts: BlogPost[];
@@ -21,7 +22,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
 const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <main className="flex flex-col flex-grow px-3 md:px-0">
+    <main className={`flex flex-col flex-grow ${padding.generalPadding}`}>
       {posts.map((post) => {
         return <PostItem key={post.id} post={post} />;
       })}
