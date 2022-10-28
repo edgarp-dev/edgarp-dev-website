@@ -1,5 +1,10 @@
 import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-import { BlogPage, BlogPost, Tag } from '../../@types/schema';
+import {
+  BlogPage,
+  BlogPost,
+  PostContentElement,
+  Tag,
+} from '../../@types/schema';
 import MarkdownParser from './MarkdownParser';
 import NotionBlogDatabase from './NotionBlogDatabase';
 
@@ -13,7 +18,7 @@ export default class BlogFacade {
     this.markdownParser = new MarkdownParser();
   }
 
-  public async getPosts(): Promise<BlogPost[]> {
+  public async getBlogPosts(): Promise<BlogPost[]> {
     const posts = await this.notionBlogDatabase.getPosts();
     const blogPosts: BlogPost[] = [];
 
@@ -26,13 +31,13 @@ export default class BlogFacade {
     return blogPosts;
   }
 
-  public async getPost(slug: string): Promise<BlogPage | undefined> {
+  public async getBlogPage(slug: string): Promise<BlogPage | undefined> {
     const post = await this.notionBlogDatabase.getPost(slug);
-    let postContent: Record<string, string>[] = [];
+    let postContent: PostContentElement[] = [];
 
     if (post) {
       const blogPost = this.toBlogPost(post);
-      postContent = await this.markdownParser.getPage(post.id);
+      postContent = await this.markdownParser.getPostContent(post.id);
 
       return { blogPost, postContent };
     }

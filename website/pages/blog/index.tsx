@@ -10,7 +10,7 @@ type Props = {
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const blogApi = new BlogApi();
-  const posts = await blogApi.getPosts();
+  const posts = await blogApi.getBlogPosts();
 
   return {
     props: {

@@ -1,6 +1,7 @@
 import NotionClient from './NotionClient';
 import { NotionToMarkdown } from 'notion-to-md';
 import { MdBlock } from 'notion-to-md/build/types';
+import { PostContentElement } from '../../@types/schema';
 
 export default class MarkdownParser {
   private readonly notionToMarkdownClient: NotionToMarkdown;
@@ -11,12 +12,12 @@ export default class MarkdownParser {
     });
   }
 
-  public async getPage(postId: string): Promise<Record<string, string>[]> {
+  public async getPostContent(postId: string): Promise<PostContentElement[]> {
     const markdownBlocks = await this.notionToMarkdownClient.pageToMarkdown(
       postId,
     );
 
-    const postContent: Record<string, string>[] = [];
+    const postContent: PostContentElement[] = [];
     markdownBlocks.forEach((markdownBlock) => {
       postContent.push(this.parseMarkdown(markdownBlock));
     });
@@ -24,7 +25,7 @@ export default class MarkdownParser {
     return postContent;
   }
 
-  private parseMarkdown(markdownBloc: MdBlock): Record<string, string> {
+  private parseMarkdown(markdownBloc: MdBlock): PostContentElement {
     switch (markdownBloc.type) {
       case 'heading_1':
         return {
