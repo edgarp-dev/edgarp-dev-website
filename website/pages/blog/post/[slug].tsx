@@ -4,22 +4,28 @@ import Head from 'next/head';
 import { ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { PostPage } from '../../../@types/schema';
-import NotionApi from '../../../src/api/NotionApi';
+import { BlogPage } from '../../../@types/schema';
+import BlogApi from '../../../src/blogApi';
 import colors from '../../../src/utils/colors';
 import padding from '../../../src/utils/padding';
 
 type StaticProps = {
-  postPage: PostPage;
+  postPage: BlogPage;
 };
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
   const { params } = context;
 
-  const notionApi = new NotionApi();
-
+  const blogApi = new BlogApi();
   const slug = params?.slug as string;
-  const postPage = await notionApi.getPost(slug);
+  const postPage = await blogApi.getPost(slug);
+
+  if (!postPage) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       postPage,
@@ -28,8 +34,8 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
 };
 
 export async function getStaticPaths() {
-  const notionApi = new NotionApi();
-  const posts = await notionApi.getListOfPosts();
+  const blogApi = new BlogApi();
+  const posts = await blogApi.getPosts();
 
   const paths = posts.map((post) => ({
     params: {
@@ -44,7 +50,7 @@ export async function getStaticPaths() {
 }
 
 const Post = ({ postPage }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const { post, postElements } = postPage;
+  const { blogPost, postContent } = postPage;
 
   function renderPostElement(postElement: Record<string, string>): ReactNode {
     switch (postElement.type) {
@@ -124,26 +130,28 @@ const Post = ({ postPage }: InferGetStaticPropsType<typeof getStaticProps>) => {
   }
 
   function renderPost(): ReactNode {
-    return postElements.map((postElement: Record<string, string>) =>
+    return postContent.map((postElement: Record<string, string>) =>
       renderPostElement(postElement),
     );
   }
 
+  const { title, description } = blogPost;
+
   return (
     <>
       <Head>
-        <title>{post.title}</title>
-        <meta name={'og:title'} title={'og:title'} content={post.title} />
+        <title>{title}</title>
+        <meta name={'og:title'} title={'og:title'} content={title} />
         <meta name={'og:type'} title={'og:type'} content={'website'} />
         <meta
           name={'description'}
           title={'description'}
-          content={post.description}
+          content={description}
         />
         <meta
           name={'og:description'}
           title={'og:description'}
-          content={post.description}
+          content={description}
         />
       </Head>
       <main>
