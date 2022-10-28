@@ -8,7 +8,7 @@ const Home: NextPage = () => {
     <div className="flex flex-col">
       <div className="flex justify-center h-80 w-full mb-4">
         <Image
-          src="/profile.jpg"
+          src="/profile.png"
           alt="Picture of the author"
           height="320"
           width="320"
