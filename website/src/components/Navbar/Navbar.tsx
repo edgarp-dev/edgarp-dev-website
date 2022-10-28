@@ -2,6 +2,7 @@ import React from 'react';
 import colors from '../../utils/colors';
 import NavBarItem from './NavbarItem';
 import padding from '../../utils/padding';
+import NavbarContent from './NavbarContent';
 
 const NavBar = () => {
   return (
@@ -13,13 +14,10 @@ const NavBar = () => {
           className={`${colors.textColor} text-xl no-underline hover:no-underline font-extrabold`}>
           edgar.dev
         </span>
-        <div
-          id="nav-content"
-          className="flex-grow flex items-center z-20"></div>
-        <ul className="list-none p-0 flex justify-end flex-1 items-center">
+        <NavbarContent>
           <NavBarItem href="/blog" text="Blog" />
           <NavBarItem href="/" text="About me" />
-        </ul>
+        </NavbarContent>
       </div>
     </nav>
   );

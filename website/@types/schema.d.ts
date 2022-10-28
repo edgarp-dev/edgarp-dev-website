@@ -13,7 +13,12 @@ export type BlogPost = {
   description: string;
 };
 
-export type PostPage = {
-  post: BlogPost;
-  postElements: Record<string, string>[];
+export type PostContentElement = {
+  type: string;
+  content: string;
+};
+
+export type BlogPage = {
+  blogPost: BlogPost;
+  postContent: PostContentElement[];
 };

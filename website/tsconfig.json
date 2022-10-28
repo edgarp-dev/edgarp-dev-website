@@ -17,12 +17,14 @@
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
+    "pages/**/*.ts",
+    "pages/**/*.tsx",
+    "psrcages/**/*.ts",
+    "src/**/*.tsx",
     ".eslintrc.js",
     "next.config.js",
     "postcss.config.js",
     "tailwind.config.js"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "public"]
 }
