@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
-import Image from 'next/image';
-import profilePic from '../public/profile.jpg';
+import Image, { StaticImageData } from 'next/image';
+import profileImage from '../public/profile.jpg';
 import GithubIcon from '../src/components/common/GithubIcon';
 import colors from '../src/utils/colors';
 
@@ -9,7 +9,7 @@ const Home: NextPage = () => {
     <div className="flex flex-col">
       <div className="flex justify-center h-80 w-full mb-4">
         <Image
-          src={profilePic}
+          src={profileImage as unknown as StaticImageData}
           alt="Picture of the author"
           width={320}
           layout="intrinsic"
