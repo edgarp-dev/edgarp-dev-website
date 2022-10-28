@@ -17,8 +17,10 @@
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
+    "pages/**/*.ts",
+    "pages/**/*.tsx",
+    "psrcages/**/*.ts",
+    "src/**/*.tsx",
     ".eslintrc.js",
     "next.config.js",
     "postcss.config.js",
