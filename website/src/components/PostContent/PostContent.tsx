@@ -55,7 +55,7 @@ const PostContent = ({ content }: Props) => {
         );
       case 'code':
         return (
-          <div className="w-[360px] md:w-[740px] lg:w-full">
+          <div className="w-[360px] sm:w-full">
             <ReactMarkdown
               // eslint-disable-next-line react/no-children-prop
               children={postElement.content}
