@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { BlogPost } from '../../../@types/schema';
-import colors from '../../utils/colors';
 import Tag from '../common/Tag';
 
 type Props = {
@@ -14,11 +13,10 @@ const PostItem = ({ post }: Props) => {
     <Link href={`/blog/post/${slug}`}>
       <div className="flex flex-col mb-8 cursor-pointer border-b border-b-amber-600">
         <div className="mb-3">
-          <p
-            className={`text-2xl font-bold antialiased ${colors.textColor} mb-1`}>
+          <p className="text-2xl font-bold antialiased text-slate-200 mb-1">
             {title}
           </p>
-          <p className={`text-base font-thin antialiased ${colors.textColor}`}>
+          <p className="text-base font-thin antialiased text-slate-200">
             {new Date(date).toDateString()}
           </p>
         </div>

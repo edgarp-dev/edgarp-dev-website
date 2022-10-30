@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import GithubIcon from '../src/components/common/GithubIcon';
-import colors from '../src/utils/colors';
 
 const Home: NextPage = () => {
   return (
@@ -18,13 +17,11 @@ const Home: NextPage = () => {
       </div>
       <div className="flex flex-col flex-grow items-center w-full">
         <p className="font-sans leading-loose mb-8">
-          <span
-            className={`font-semibold text-4xl ${colors.textColor} antialiased`}>
+          <span className="font-semibold text-4xl text-slate-200 antialiased">
             Edgar Perez
           </span>
           <br />
-          <span
-            className={`font-normal text-2xl ${colors.textColor} antialiased`}>
+          <span className="font-normal text-2xl text-slate-200 antialiased">
             Sofware Developer
           </span>
         </p>

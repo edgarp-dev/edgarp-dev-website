@@ -1,9 +1,9 @@
-import colors from '../../utils/colors';
+import React from 'react';
 
 const GithubIcon = () => {
   return (
     <button
-      className={`bg-amber-600 hover:bg-amber-700 ${colors.textColor} font-bold py-2 px-4 rounded inline-flex items-center`}
+      className="bg-amber-600 hover:bg-amber-700 text-slate-200 font-bold py-2 px-4 rounded inline-flex items-center"
       onClick={() => {
         window.open('https://github.com/edgarp-dev', '_blank');
       }}>
