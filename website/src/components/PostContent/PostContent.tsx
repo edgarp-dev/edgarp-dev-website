@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import colors from '../../utils/colors';
 import padding from '../../utils/padding';
 
 type Props = {
@@ -13,25 +12,25 @@ const PostContent = ({ content }: Props) => {
     switch (postElement.type) {
       case 'h1':
         return (
-          <h1 className={`${colors.textColor} text-3xl font-bold`}>
+          <h1 className="text-slate-200 text-3xl font-bold">
             {postElement.content}
           </h1>
         );
       case 'h2':
         return (
-          <h2 className={`${colors.textColor} text-2xl font-semibold`}>
+          <h2 className="text-slate-200 text-2xl font-semibold">
             {postElement.content}
           </h2>
         );
       case 'h3':
         return (
-          <h3 className={`${colors.textColor} text-xl font-semibold`}>
+          <h3 className="text-slate-200 text-xl font-semibold">
             {postElement.content}
           </h3>
         );
       case 'p':
         return (
-          <p className={`${colors.textColor} text-lg font-light`}>
+          <p className="text-slate-200} text-lg font-light">
             {postElement.content}
           </p>
         );
@@ -40,7 +39,7 @@ const PostContent = ({ content }: Props) => {
       case 'a':
         return (
           <a
-            className={`${colors.textColor} text-base font-extralight`}
+            className="text-slate-200 text-base font-extralight"
             href={postElement.content}
             target="_blank"
             rel="noopener noreferrer">
@@ -49,13 +48,13 @@ const PostContent = ({ content }: Props) => {
         );
       case 'li':
         return (
-          <p className={`${colors.textColor} text-lg font-light`}>
+          <p className="text-slate-200 text-lg font-light">
             &bull;{postElement.content}
           </p>
         );
       case 'code':
         return (
-          <div className="w-[360px] md:w-[740px] lg:w-full">
+          <div className="w-[360px] sm:w-full">
             <ReactMarkdown
               // eslint-disable-next-line react/no-children-prop
               children={postElement.content}
