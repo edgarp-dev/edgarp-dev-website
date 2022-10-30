@@ -13,7 +13,7 @@ const NavBar = () => {
         className={`mx-auto md:max-w-3xl ${padding.generalPadding} flex flex-wrap items-center justify-between mt-0 py-3`}>
         <span
           className={`${colors.textColor} text-xl no-underline hover:no-underline font-extrabold`}>
-          edgar.dev
+          edgarp.dev
         </span>
         <NavbarContent>
           <NavBarItem href="/blog" text="Blog" />
