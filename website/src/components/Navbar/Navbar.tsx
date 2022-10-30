@@ -8,7 +8,7 @@ const NavBar = () => {
   return (
     <nav
       id="header"
-      className={`fixed min-w-full z-10 top-0 h-14 decoration-solid bg-[${colors.secondaryColor}] shadow-lg`}>
+      className="fixed min-w-full z-10 top-0 h-14 decoration-solid bg-[#222831] shadow-lg">
       <div
         className={`mx-auto md:max-w-3xl ${padding.generalPadding} flex flex-wrap items-center justify-between mt-0 py-3`}>
         <span
