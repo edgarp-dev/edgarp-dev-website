@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import padding from '../../utils/padding';
 
 type Props = {
   content: Record<string, string>[];
@@ -88,14 +87,11 @@ const PostContent = ({ content }: Props) => {
   }
 
   return (
-    <div
-      className={`${padding.generalPadding} flex items-center justify-center`}>
-      <article>
-        {content.map((postElement: Record<string, string>) =>
-          renderPostElement(postElement),
-        )}
-      </article>
-    </div>
+    <article>
+      {content.map((postElement: Record<string, string>) =>
+        renderPostElement(postElement),
+      )}
+    </article>
   );
 };
 

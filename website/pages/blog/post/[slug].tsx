@@ -2,7 +2,9 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import { BlogPage } from '../../../@types/schema';
 import BlogApi from '../../../src/blogApi';
+import Tag from '../../../src/components/common/Tag';
 import PostContent from '../../../src/components/PostContent';
+import padding from '../../../src/utils/padding';
 
 type StaticProps = {
   postPage: BlogPage;
@@ -47,6 +49,7 @@ export async function getStaticPaths() {
 const Post = ({ postPage }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { blogPost, postContent } = postPage;
   const { title, description } = blogPost;
+  const { date, tags } = blogPost;
 
   return (
     <>
@@ -65,7 +68,20 @@ const Post = ({ postPage }: InferGetStaticPropsType<typeof getStaticProps>) => {
           content={description}
         />
       </Head>
-      <main>
+      <main className={`${padding.generalPadding} flex flex-col`}>
+        <div className="flex flex-col flex-grow">
+          <div className="flex-grow">
+            <div className="flex flex-row flex-wrap mb-1">
+              {tags.map(({ id, name }) => {
+                return <Tag key={id} name={name} />;
+              })}
+            </div>
+            <p className="text-base font-thin antialiased text-slate-200 mb-5">
+              {new Date(date).toDateString()}
+            </p>
+          </div>
+          <div className="flex-grow bg-blue-400"></div>
+        </div>
         <PostContent content={postContent} />
       </main>
     </>
