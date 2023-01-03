@@ -1,0 +1,15 @@
+{
+  "name": "revalidate_function",
+  "version": "1.0.0",
+  "description": "Revalidate website post function",
+  "main": "app.js",
+  "author": "edgarp.dev",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "axios": ">=0.21.1"
+  },
+  "scripts": {
+    "test": "mocha tests/unit/"
+  }
+}
