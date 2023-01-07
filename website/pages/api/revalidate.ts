@@ -26,6 +26,8 @@ export default async function handler(
       await res.revalidate(`/blog/post/${slug}`);
     }
 
+    await res.revalidate('/blog');
+
     return res.json({ revalidated: true });
   } catch (e: unknown) {
     console.error(e);
