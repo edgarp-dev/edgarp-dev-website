@@ -26,14 +26,15 @@ export const lambdaHandler = async (event, context) => {
         });
 
         const blogPostsUrlPaths = blogsDatabaseResponse.results.map(blogDatabaseItem => {
-            return blogDatabaseItem.properties.Slug.rich_text[0].plain_text;
+            return `/blog/post/${blogDatabaseItem.properties.Slug.rich_text[0].plain_text}`;
         });
 
-        console.log(blogPostsUrlPaths)
-        // const revalidateUrl = `https://www.edgarp.dev/api/revalidate?secret=${process.env.REVALIDATE_TOKEN}`;
-        // console.log(revalidateUrl);
-        // const response = await axios.get(revalidateUrl);
-        // console.log(response.data);
+        const revalidationPromises = blogPostsUrlPaths.map(urlPath => {
+            const revalidateUrl = `https://www.edgarp.dev/api/revalidate?path=${urlPath}&secret=${process.env.REVALIDATE_TOKEN}`;
+            return axios.get(revalidateUrl);
+        });
+
+        await Promise.all(revalidationPromises);
 
         console.log('>>>> FINISHED REVALIDATING');
         return {
@@ -43,7 +44,7 @@ export const lambdaHandler = async (event, context) => {
             })
         };
     } catch (err) {
-        console.errorcd(err.message);
+        console.error(err.message);
         return {
             statusCode: 500,
             body: JSON.stringify({
