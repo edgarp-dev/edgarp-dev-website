@@ -15,6 +15,9 @@ Resources:
       Architectures:
       - x86_64
       Timeout: 15
+      AutoPublishAlias: live
+      FunctionUrlConfig:
+        AuthType: NONE 
       Environment:
         Variables:
           REVALIDATE_TOKEN: '{{resolve:ssm:edgarp-website-revalidat-token:1}}'
@@ -23,3 +26,7 @@ Resources:
           Type: ScheduleV2
           Properties:
             ScheduleExpression: cron(0 0 * * ? *)
+
+Outputs:
+  RevalidateFunctionUrl:
+    Value: !GetAtt RevalidateFunctionUrl.FunctionUrl
