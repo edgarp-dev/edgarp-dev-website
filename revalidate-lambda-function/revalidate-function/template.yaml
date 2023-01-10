@@ -14,12 +14,21 @@ Resources:
       Runtime: nodejs18.x
       Architectures:
       - x86_64
-      Timeout: 15
+      Timeout: 60
+      AutoPublishAlias: live
+      FunctionUrlConfig:
+        AuthType: NONE 
       Environment:
         Variables:
+          NOTION_ACCESS_TOKEN: '{{resolve:ssm:edgarp-website-notion-access-token:1}}'
+          NOTION_BLOG_DATABASE_ID: '{{resolve:ssm:edgarp-website-notion-blog-database-id:1}}'
           REVALIDATE_TOKEN: '{{resolve:ssm:edgarp-website-revalidat-token:1}}'
       Events:
         RunEveryDayAt12AMCronEvent:
           Type: ScheduleV2
           Properties:
             ScheduleExpression: cron(0 0 * * ? *)
+
+Outputs:
+  RevalidateFunctionUrl:
+    Value: !GetAtt RevalidateFunctionUrl.FunctionUrl
